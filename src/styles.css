@@ -1,1 +1,108 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    padding-bottom: 50px;
+}
+
+.slider {
+    height: 50vh;
+}
+
+footer {
+    color: white;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.main-container {
+    margin-top: 20px;
+}
+
+.colorhead {
+    color: #4277C4;
+}
+
+.title {
+    color: #C80028;
+}
+
+.bg-primary1 {
+    background-color: #4277C4 !important;
+}
+
+.bg-primary2yellow {
+    background-color: #EFB00F !important;
+}
+
+.btn-volver {
+    width: 10em;
+    height: 2, 5em;
+}
+
+.form-center {
+    margin: 0 auto;
+    width: 250px;
+}
+
+.btn-outline-primary1 {
+    color: #4277C4;
+    border-color: #4277C4;
+}
+
+.contendorimg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.bg-headerdark {
+    background-color: rgba(0, 0, 0, 0.92)
+}
+
+.texthead {
+    font-size: 130%;
+    color: white;
+}
+
+.slider2 {
+    width: 120em;
+    height: 2, 5em;
+}
+
+.centrado {
+    margin-left: auto;
+    margin-right: auto;
+    width: 16em;
+    height: 2, 5em;
+}
+
+
+/*Animacioones*/
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}

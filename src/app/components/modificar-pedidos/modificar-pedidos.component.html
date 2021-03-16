@@ -1,0 +1,58 @@
+<form class="form-control" [formGroup]="nuevoForm" (ngSubmit)="viewform(nuevoForm.value)" readonly>
+    <div class="card-body">
+        <p class="title"><b>MODIFICAR PEDIDO</b></p>
+    </div>
+    <div class="card-body">
+        <label>No de Pedido</label>
+        <input type="number" class="form-control" [ngModel]="pedidoFilterOne" aria-label="Dollar amount (with dot and two decimal places)" formControlName="idPedido" readonly="readonly">
+    </div>
+    <div class="card-body">
+        <label>Categorias<span class="text-danger">*</span></label>
+        <select class="form-select selectcount" aria-label=".form-select-sm example" formControlName="idCategoria" required>
+            <option selected="true" value="" disabled="disabled">select</option>
+            <option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">{{categoria.nombreCategoria}}</option>
+        </select>
+        <div class="invalid-feedback">
+            Por favor ingrese la categoria.
+        </div>
+    </div>
+    <div class="card-body">
+        <label>Productos<span class="text-danger">*</span></label>
+        <select class="form-select selectcount" aria-label=".form-select-sm example" formControlName="idProducto" required>
+            <option selected="true" value="" disabled="disabled">select</option>
+            <option *ngFor="let producto of producto" [value]="producto.idProducto">{{producto.nombreProducto}}</option>
+        </select>
+    </div>
+    <div class="card-body">
+        <label>Clientes<span class="text-danger">*</span></label>
+        <select class="form-select selectcount" aria-label=".form-select-sm example" formControlName="idCliente" required>
+            <option selected="true" value="" disabled="disabled">select</option>
+            <option *ngFor="let cliente of cliente" [value]="cliente.idCliente" required>{{cliente.nombre}}</option>
+        </select>
+    </div>
+    <div class="card-body">
+        <label for="customRange2" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" formControlName="cantidad" (ngModelChange)="saverange(nuevoForm.value)">
+        <div class="invalid-feedback">
+            Por favor ingrese la categoria.
+        </div>
+    </div>
+    <div class="card-body">
+        <label>Fecha de compra</label>
+        <input type="date" formControlName="fechaPedido" max="3000-12-31" min="1000-01-01" class="form-control" required>
+    </div>
+    <div class="card-body">
+        <label>Valor a pagar - $</label>
+        <input type="number" class="form-control" [ngModel]="total" aria-label="Dollar amount (with dot and two decimal places)" formControlName="precio" readonly="readonly">
+
+    </div>
+    <div class="card-body">
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" formControlName="comentario" style="height: 100px" required></textarea>
+            <label for="floatingTextarea2">Comentarios</label>
+        </div>
+    </div>
+    <div class="card-body">
+        <button class="btn btn-primary" type="submit">Modificar</button>
+    </div>
+</form>

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+//Rutas
+import { APP_ROUTING } from './app.routes';
 
 @Component({
   selector: 'app-root',

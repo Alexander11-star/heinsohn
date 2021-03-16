@@ -1,0 +1,194 @@
+<form class="form-control" [formGroup]="nuevoForm" (ngSubmit)="viewform(nuevoForm.value)" readonly>
+    <div class="card-body">
+        <p class="title"><b>FORMULARIO COMPRA DE PRODUCTOS!!</b></p>
+    </div>
+    <div class="card-body">
+        <label>Categorias<span class="text-danger">*</span></label>
+        <select class="form-select selectcount" aria-label=".form-select-sm example" formControlName="idCategoria" required>
+            <option selected="true" value="" disabled="disabled">select</option>
+            <option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">{{categoria.nombreCategoria}}</option>
+        </select>
+        <div class="invalid-feedback">
+            Por favor ingrese la categoria.
+        </div>
+    </div>
+    <div class="card-body">
+        <label>Productos<span class="text-danger">*</span></label>
+        <select class="form-select selectcount" aria-label=".form-select-sm example" formControlName="idProducto" required>
+            <option selected="true" value="" disabled="disabled">select</option>
+            <option *ngFor="let producto of producto" [value]="producto.idProducto">{{producto.nombreProducto}}</option>
+        </select>
+    </div>
+    <div class="card-body">
+        <label>Clientes<span class="text-danger">*</span></label>
+        <select class="form-select selectcount" aria-label=".form-select-sm example" formControlName="idCliente" required>
+            <option selected="true" value="" disabled="disabled">select</option>
+            <option *ngFor="let cliente of cliente" [value]="cliente.idCliente" required>{{cliente.nombre}}</option>
+        </select>
+    </div>
+    <div class="card-body">
+        <label for="customRange2" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" formControlName="cantidad" (ngModelChange)="saverange(nuevoForm.value)">
+        <div class="invalid-feedback">
+            Por favor ingrese la categoria.
+        </div>
+    </div>
+    <div class="card-body">
+        <label>Fecha de compra</label>
+        <input type="date" formControlName="fechaPedido" max="3000-12-31" min="1000-01-01" class="form-control" required>
+    </div>
+    <div class="card-body">
+        <label>Valor a pagar - $</label>
+        <input type="number" class="form-control" [ngModel]="total" aria-label="Dollar amount (with dot and two decimal places)" formControlName="precio" readonly="readonly">
+
+    </div>
+    <div class="card-body">
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" formControlName="comentario" style="height: 100px" required></textarea>
+            <label for="floatingTextarea2">Comentarios</label>
+        </div>
+    </div>
+    <div class="card-body">
+        <button class="btn btn-primary" type="submit">Guardar</button>
+    </div>
+</form>
+<br>
+
+<hr>
+<div class="card-body">
+    <p class="title"><b>Lista de Pedidos</b></p>
+</div>
+<table class="table table-hover ">
+    <thead style="background: #383f46!important; color: rgb(255, 255, 255); ">
+        <tr>
+            <th scope="col ">
+                Id
+            </th>
+            <th scope="col ">
+                Categoria
+            </th>
+            <th scope="col ">
+                Producto
+            </th>
+            <th scope="col ">
+                Cliente
+            </th>
+            <th scope="col ">
+                Fecha Pedido
+            </th>
+            <th scope="col ">
+                Cantidad
+            </th>
+            <th scope="col ">
+                Precio
+            </th>
+            <th scope="col ">
+                Comentarios
+            </th>
+            <th scope="col ">
+
+            </th>
+            <th scope="col ">
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pedidos of pedido">
+            <th>{{pedidos.idPedido}}</th>
+            <td>{{pedidos.idCategoria}}</td>
+            <td>{{pedidos.idProducto}}</td>
+            <td>{{pedidos.idCliente}}</td>
+            <td>{{pedidos.fechaPedido}}</td>
+            <td>{{pedidos.cantidad}}</td>
+            <td>{{pedidos.precio}}</td>
+            <td>{{pedidos.comentario}}</td>
+            <td>
+                <div class="card-body">
+                    <button class="btn btn-danger" (click)="DeletePedidos(pedidos.idPedido)">eliminar</button>
+                </div>
+            </td>
+            <td>
+                <div class="card-body">
+                    <button class="btn btn-success" (click)="viewPedido(pedidos.idPedido)">Modificar</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+
+<div class="card-body">
+    <p class="title"><b>Buscar pedido</b></p>
+</div>
+<form [formGroup]="nuevoForm" (ngSubmit)="searchClientes(nuevoForm.value)">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <label>Clientes<span class="text-danger">*</span></label>
+                <div class="col-sm-3">
+                    <select class="form-select selectcount" aria-label=".form-select-sm example" formControlName="idCliente" required>
+                    <option selected="true" value="" disabled="disabled">select</option>
+                    <option *ngFor="let cliente of cliente" [value]="cliente.idCliente" required>{{cliente.nombre}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form><br>
+
+
+<table class="table table-hover ">
+    <thead style="background: #383f46!important; color: rgb(255, 255, 255); ">
+        <tr>
+            <th scope="col ">
+                Id
+            </th>
+            <th scope="col ">
+                Categoria
+            </th>
+            <th scope="col ">
+                Producto
+            </th>
+            <th scope="col ">
+                Cliente
+            </th>
+            <th scope="col ">
+                Fecha Pedido
+            </th>
+            <th scope="col ">
+                Cantidad
+            </th>
+            <th scope="col ">
+                Precio
+            </th>
+            <th scope="col ">
+                Comentarios
+            </th>
+            <th scope="col ">
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pedidos of pedido; first as isFirst">
+            <th *ngIf="isFirst">{{clientes.idPedido}}</th>
+            <td *ngIf="isFirst">{{clientes.idCategoria}}</td>
+            <td *ngIf="isFirst">{{clientes.idProducto}}</td>
+            <td *ngIf="isFirst">{{clientes.idCliente}}</td>
+            <td *ngIf="isFirst">{{clientes.fechaPedido}}</td>
+            <td *ngIf="isFirst">{{clientes.cantidad}}</td>
+            <td *ngIf="isFirst">{{clientes.precio}}</td>
+            <td *ngIf="isFirst">{{clientes.comentario}}</td>
+            <td *ngIf="isFirst">
+                <div class="card-body">
+                    <button class="btn btn-danger" (click)="DeletePedidos(clientes.idPedido)">eliminar</button>
+                </div>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
